@@ -1,0 +1,6 @@
+//close modal
+ocument.querySelector('.close').addEventListener('click,function(){
+  document.querySelector('.background-modal').style.display = 'none';
+}
+
+if (seconds ===60) {seconds = 0; minutes = +1;

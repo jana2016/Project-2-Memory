@@ -1,0 +1,10 @@
+function gameOver(){
+document.querySelector('.background-modal').style.display = 'flex'
+totalTime.innerhtml = clock
+totalStars.innerhtml =
+
+close modal
+//closeModal.addEventListener('click',
+//function(){ document.querySelector('.background-modal').style.display = 'none'
+
+function
