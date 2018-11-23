@@ -68,93 +68,88 @@ let matchedCards = [];
 let timerId = 0;
 let i = 0;
 let time = 0;
-let closeModal = document.querySelector('.close');
 let seconds = 0, minutes = 0;
 
 cardDeck.addEventListener("click", event =>{
   const tgt = event.target;
     if(tgt.classList.contains('card') && !tgt.classList.contains('open')){
-      // in case someone is a frenetic clicker
+
+// in case someone is a frenetic clicker
       if (openCards.length == 2) {
         return;
       }
-      //start timer
+
+// start timer
       function startTimer (){
         setInterval(function(){
           time++;}, 1000);
-
       }
         const clock=document.querySelector('.clock');
         clock.innerHTML=time
       startTimer();
 
-
-      //count number of valid clicks and display on board
+// count number of valid clicks and display on board
       function increaseCount() {
         i++;
         const movesText=document.querySelector('.moves');
         movesText.innerHTML= i;
       }
-      // function that detects specific number of moves
-      // remove star at intervals based on increasing number of moves
+
+// function that detects specific number of moves
+// remove star at intervals based on increasing number of moves
       if (i===15 || i===25) {
         const numStars = document.getElementById('starList');
         numStars.removeChild(numStars.childNodes[0]);
       }
     tgt.classList.toggle('open');
-    // push tgt on the openCards array
-    openCards.push(tgt);
-    // are there 2 open cards?
-    if (openCards.length === 2) {
-       // are the cards the same?
-      if (openCards[0].lastChild.className === openCards[1].lastChild.className) {
-        // if cards are same, add match class and empty openCards array
-        openCards[0].classList.toggle('match');
-        openCards[1].classList.toggle('match');
-        matchedCards.push(openCards[0], openCards[1]);
-        openCards = [];
-        }
-        else {
-          // if cards are different, flip cards over again and empty openCards array
-          timerId = setTimeout(function(){
-              openCards[0].classList.toggle('open');
-              openCards[1].classList.toggle('open');
-              openCards = [];
-          }, 1000);
-        }
-        //call function to count number of valid clicks and display on board
-        increaseCount();
 
+// push tgt on the openCards array
+    openCards.push(tgt);
+
+// are there 2 open cards?
+    if (openCards.length === 2) {
+ // are the cards the same?
+    if (openCards[0].lastChild.className === openCards[1].lastChild.className) {
+// if cards are same, add match class and empty openCards array
+      openCards[0].classList.toggle('match');
+      openCards[1].classList.toggle('match');
+      matchedCards.push(openCards[0], openCards[1]);
+      openCards = [];
       }
-      //when all cards matched game is over, congrats modal pops up with stats
-      if (matchedCards.length === 16){
-        document.querySelector('.background-modal').style.display = 'flex';
+    else {
+// if cards are different, flip cards over again and empty openCards array
+      timerId = setTimeout(function(){
+        openCards[0].classList.toggle('open');
+        openCards[1].classList.toggle('open');
+        openCards = [];
+      }, 1000);
+    }
+//call function to count number of valid clicks and display on board
+      increaseCount();
+    }
+//when all cards matched game is over, congrats modal pops up with stats
+    if (matchedCards.length === 4){
+      document.querySelector('.background-modal').style.display = 'flex';
+//all cards match! Time to stop the timer.
+      function stopTimer(){
+        const timer = setInterval(function(){
+          time++;}, 1000);
+        clearInterval(timer)}
+        stopTimer();
       }
   }
-    //when close button is clicked, modal closes
-
 });
-
-//add event listener to reset button
-//resetButton.addEventListener("click", function restart(){
-
-//in reset button, if timerId >0 then clearTimeout(timerId)
-
-//stop timer
-function stopTimer(){
-  const timer = setInterval(function(){
-    time++;}, 1000);
-  clearInterval(timer)}
-
-// call restart function
 restart();
 
+// call restart function
 
- /*+ if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- function stopTimer
- function gameOver
- function displayMessage
 
- function restartGame
+//when close button is clicked, modal closes
+document.querySelector('.close').addEventListener('click',
+  function(){document.querySelector('.background-modal').style.display ='none';
+});
 
- */
+//when reset icon is clicked, game starts over
+
+//document.querySelector('.restart').addEventListener('click',
+  //restart());

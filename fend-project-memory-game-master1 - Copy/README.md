@@ -3,7 +3,7 @@ Credits
 
 *show cards, increase count: Matthew Cranford walkthrough part 2, 5 https://matthewcranford.com
 
-/* modal : https://www.youtube.com/watch?v=gLWIYk0Sd38
+/* modal create, open and close: https://www.youtube.com/watch?v=gLWIYk0Sd38
 
 /*increase count: https://stackoverflow.com/questions/9186346/javascript-onclick-increment-number
 
