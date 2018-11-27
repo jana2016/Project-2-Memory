@@ -67,10 +67,12 @@ let cardDeck = document.querySelector('.deck');
 let matchedCards = [];
 let timerId = 0;
 let i = 0;
-let time = 0;
+let secondsElapsed = 0;
 let clockOff= true;
 let originalScore = document.querySelectorAll('.stars li')
 let clock = document.querySelector('.clock');
+let clockId;
+let totalTime = document.querySelector ('.totalTime');
 
 
   cardDeck.addEventListener("click", event =>{
@@ -85,7 +87,6 @@ let clock = document.querySelector('.clock');
     if (clockOff){
       startTimer();
       clockOff = false;
-
     }
 
 // count number of valid clicks and display on board
@@ -96,13 +97,13 @@ let clock = document.querySelector('.clock');
     }
 
 // function that detects specific number of moves and removes star at intervals based on increasing number of moves
-    if (i===2 || i===4) {
+    if (i===10 || i===16) {
       const numStars = document.getElementById('starList');
-      if (i===2){
+      if (i===10){
         console.log(originalScore[0]);
         originalScore[0].classList.add('stars-hidden');
       }
-      if (i===4) {
+      if (i===16) {
         originalScore[1].classList.add('stars-hidden')
       }
     }
@@ -129,44 +130,51 @@ let clock = document.querySelector('.clock');
           openCards[1].classList.toggle('open');
           openCards = [];
         }, 1000);
-    }
+      }
 //call function to count number of valid clicks and display on board
       increaseCount();
-
-    }
+      }
 //when all cards matched game is over, congrats modal pops up with stats
-        if (matchedCards.length === 6){
+        if (matchedCards.length === 4){
           document.querySelector('.background-modal').style.display = 'flex';
+//all cards match! Stop the timer.
+          stopTimer();
+//display time
+          mins = Math.floor(secondsElapsed/60);
+          if (secondsElapsed < 60){
+            totalTime.innerHTML = (secondsElapsed +" seconds");
+          }
+          else {
+          totalTime.innerHTML = (mins +" minutes and " + secondsElapsed % (mins * 60) + " seconds")
+          }
+//display number of stars where i = number of moves
+          
+        }
 
-//all cards match! Time to stop the timer.
-          function stopTimer(){
-            const timer = setInterval(function(){
-              time++;}, 1000);
-            clearInterval(timer)}
-            stopTimer();
-//display the stats
   }
-
-}
-
 });
 restart();
 
 // start timer
     function startTimer (){
-      let clockId = setInterval(function(){
-        time++;
+      clockId = setInterval(function(){
+        secondsElapsed++;
+        showTimer ();
+        console.log(secondsElapsed);
       }, 1000);
-        clock.innerHTML = time;
-
+    }
+// stop timer
+    function stopTimer(){
+      clearInterval(clockId);
     }
 
-/*show timer on game board
+//show timer on game board
   function showTimer(){
     const clock = document.querySelector('.clock');
     console.log(clock);
-    clock.innerHTML = time;
-  }*/
+    clock.innerHTML = secondsElapsed;
+  }
+//display stars on modal
 
 //when close button is clicked, modal closes
 document.querySelector('.close').addEventListener('click',
