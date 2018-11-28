@@ -72,7 +72,8 @@ let clockOff= true;
 let originalScore = document.querySelectorAll('.stars li')
 let clock = document.querySelector('.clock');
 let clockId;
-let totalTime = document.querySelector ('.totalTime');
+let totalTime = document.querySelector('.totalTime');
+let totalStars = document.querySelector('.totalStars');
 
 
   cardDeck.addEventListener("click", event =>{
@@ -147,8 +148,8 @@ let totalTime = document.querySelector ('.totalTime');
           else {
           totalTime.innerHTML = (mins +" minutes and " + secondsElapsed % (mins * 60) + " seconds")
           }
-//display number of stars where i = number of moves
-          
+//display number of stars
+          totalStars.innerHTML = document.getElementsByClassName('fa fa-star').length;
         }
 
   }
