@@ -3,7 +3,7 @@ Credits
 /*font awesome icons
 https://fontawesome.com/v4.7.0/icons/
 
-*show cards, increase count: Matthew Cranford walkthrough part 2, 5 https://matthewcranford.com
+*show cards, increase count, clock: Matthew Cranford walkthrough part 2, 5, 7 https://matthewcranford.com
 
 /* modal create, open and close: https://www.youtube.com/watch?v=gLWIYk0Sd38
 
