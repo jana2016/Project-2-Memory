@@ -99,13 +99,13 @@ let totalStars = document.querySelector('.totalStars');
     }
 
 // function that detects specific number of moves and removes star at intervals based on increasing number of moves
-    if (i===8 || i===12) {
+    if (i===15 || i===25) {
       const numStars = document.getElementById('starList');
-      if (i===8){
+      if (i===15){
         console.log(originalScore[0]);
         originalScore[0].classList.add('stars-hidden');
       }
-      if (i===12) {
+      if (i===25) {
         originalScore[1].classList.add('stars-hidden')
       }
     }
@@ -137,7 +137,7 @@ let totalStars = document.querySelector('.totalStars');
       increaseCount();
       }
 //when all cards matched game is over, congrats modal pops up with stats
-        if (matchedCards.length === 4){
+        if (matchedCards.length === 16){
           document.querySelector('.background-modal').style.display = 'flex';
 //all cards match! Stop the timer.
           stopTimer();
