@@ -76,6 +76,7 @@ let totalTime = document.querySelector('.totalTime');
 let totalStars = document.querySelector('.totalStars');
 
 
+
   cardDeck.addEventListener("click", event =>{
     const tgt = event.target;
       if(tgt.classList.contains('card') && !tgt.classList.contains('open')){
@@ -98,13 +99,13 @@ let totalStars = document.querySelector('.totalStars');
     }
 
 // function that detects specific number of moves and removes star at intervals based on increasing number of moves
-    if (i===10 || i===16) {
+    if (i===8 || i===12) {
       const numStars = document.getElementById('starList');
-      if (i===10){
+      if (i===8){
         console.log(originalScore[0]);
         originalScore[0].classList.add('stars-hidden');
       }
-      if (i===16) {
+      if (i===12) {
         originalScore[1].classList.add('stars-hidden')
       }
     }
@@ -145,12 +146,19 @@ let totalStars = document.querySelector('.totalStars');
           if (secondsElapsed < 60){
             totalTime.innerHTML = (secondsElapsed +" seconds");
           }
-          else {
-          totalTime.innerHTML = (mins +" minutes and " + secondsElapsed % (mins * 60) + " seconds")
-          }
+            else {
+            totalTime.innerHTML = (mins +" minutes and " + secondsElapsed % (mins * 60) + " seconds")
+            }
 //display number of stars
-          totalStars.innerHTML = document.getElementsByClassName('fa fa-star').length;
-        }
+          let starsHidden = document.getElementsByClassName('stars-hidden').length;
+          if (starsHidden === 0){
+            totalStars.innerHTML = 3;
+          } else if (starsHidden === 1 ){
+            totalStars.innerHTML = 2;
+          } else if (starsHidden ===2){
+            totalStars.innerHTML = 1;
+            }
+          }
 
   }
 });
